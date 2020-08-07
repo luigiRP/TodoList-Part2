@@ -1,13 +1,29 @@
 @import "~bootstrap/scss/bootstrap.scss";
+body {
+    background-color: #F2F2F2;
+}
 
-/* 
+h1 {
+    color: #ECDBDC;
+    font-weight: 100;
+    font-size: 6rem;
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+.card {
+     box-shadow: 10px 10px 8px #888888;
+}
 
-*/
+.task {   
+    height: 4rem;   
+}
+
+.delete {
+    display: none;
+    cursor: pointer;
+    }
+
+.task:hover .delete{
+    display: inline;
+}
+
+
