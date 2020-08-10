@@ -6,31 +6,23 @@ export function Home() {
 	const [tasks, setTasks] = useState([]);
 	let [tasksQuantity, setTasksQuantity] = useState(0);
 
-	useEffect(() => {
-		const getTodos = () => {
-			const startTasks = [
-				{ label: "Breakfast", done: false },
-				{ label: "Lunch", done: false },
-				{ label: "Dinner", done: false }
-			];
-			setTasks(startTasks);
-			fetch("https://assets.breatheco.de/apis/fake/todos/user/luigiRP", {
-				method: "POST", // or 'PUT'
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(startTasks)
-			})
-				.then(response => response.json())
-				.then(data => {
-					console.log("Success:", data);
-				})
-				.catch(error => {
-					console.error("Error:", error);
-				});
-		};
-		getTodos();
-	}, []);
+	useEffect(
+		() => {
+			const getTodos = async () => {
+				let response = await fetch(
+					"https://assets.breatheco.de/apis/fake/todos/user/luigiRP"
+				);
+				let data = await response.json();
+				if (tasks.length == 0) {
+					setTasks(data);
+				} else {
+					console.log(tasks);
+				}
+			};
+			getTodos();
+		},
+		[tasks]
+	);
 
 	const addTask = e => {
 		if (e.key === "Enter") {
